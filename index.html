@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
-	<script src="script.js"></script>
-	<style>
-		canvas{
-			background-color: #000;
-			display: block;
-			position: absolute;
-			margin: auto;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-		}
-	</style>
+    <title></title>
+    <script src="js/script.js"></script>
+    <style>
+        canvas {
+            background-color: #000;
+            display: block;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
 </head>
+
 <body>
-	<script>
-		var tela, input, frames;
-		var alienImg, jogadorImg, escudoImg;
-		var alien, direcao, jogador, bala, escudo;
+    <script>
+        var tela, input, frames;
+        var alienImg, jogadorImg, escudoImg;
+        var alien, direcao, jogador, bala, escudo;
 
-		function main(){
-			tela = new Tela(510, 600);
+        function main() {
+            tela = new Tela(500, 600);
+            input = new Input();
 
+            var img = new Image();
+            img.addEventListener("load", function() {
+                alienImg = [
+                    [new Sprite(this, 0, 0, 22, 16), new Sprite(this, 0, 16, 22, 16)],
+                    [new Sprite(this, 22, 0, 16, 16), new Sprite(this, 22, 16, 16, 16)],
+                    [new Sprite(this, 38, 0, 24, 16), new Sprite(this, 38, 0, 24, 16)]
+                ];
+                jogadorImg = new Sprite(this);
+                escudoImg = new Sprite(this);
 
-		};
+                ini();
+                run();
+            });
 
-		function ini(){};
+            img.src = "img/invaders.png";
+        };
 
-		function run(){};
+        function ini() {};
 
-		function update(){};
+        function run() {
+            var loop = function() {
+                update();
+                render();
 
-		function render(){};
+                window.requestAnimationFrame(loop, tela.canvas);
+            }
+        };
 
+        function update() {};
 
-
-
-
-	</script>
+        function render() {
+            tela.drawSprite(alienImg[0][0], 10, 10);
+        };
+    </script>
 
 </body>
+
 </html>
